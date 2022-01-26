@@ -1,13 +1,15 @@
 import express from "express";
-import mongoose from "mongoose";
+import connectDB from "./config/db.js";
 import dotenv from "dotenv";
-
-const app = express();
-app.use(express.json());
 
 dotenv.config({
   path: "./config.env",
 });
+
+connectDB();
+
+const app = express();
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Welcome to the backend!");
