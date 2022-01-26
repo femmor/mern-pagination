@@ -1,6 +1,7 @@
 import express from "express";
 import connectDB from "./config/db.js";
 import dotenv from "dotenv";
+import postRoutes from "./routes/postRoutes.js";
 
 dotenv.config({
   path: "./config.env",
@@ -9,11 +10,10 @@ dotenv.config({
 connectDB();
 
 const app = express();
+
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the backend!");
-});
+app.use("/api/v1/posts", postRoutes);
 
 const PORT = process.env.PORT;
 
